@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"GriffinBackend/rest"
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -15,6 +14,16 @@ func init() {
 	}
 }
 
+var griffin = rest.GriffinWS{}
+
 func main() {
-	fmt.Println(os.Getenv("PORT"))
+	griffin = griffin.
+		StartService().
+		PingTest().
+		Version()
+
+	griffin = griffin.
+		GetEmployee()
+
+	griffin.Conn.Run()
 }

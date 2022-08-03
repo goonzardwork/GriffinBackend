@@ -1,1 +1,8 @@
 package rest
+
+const (
+	PERMANENT_EMPLOYEE_KEY  = "employee:1"
+	PERMANENT_EMPLOYEE_PATH = "$"
+	FREELANCE_EMPLOYEE_KEY  = "employee:2"
+	FREELANCE_EMPLOYEE_PATH = "$"
+)

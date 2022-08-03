@@ -17,13 +17,16 @@ func init() {
 var griffin = rest.GriffinWS{}
 
 func main() {
+	// landing page
 	griffin = griffin.
 		StartService().
 		PingTest().
 		Version()
 
+	// employee CRUD operations
 	griffin = griffin.
-		GetEmployee()
+		GetEmployee().
+		AddEmployee()
 
 	griffin.Conn.Run()
 }

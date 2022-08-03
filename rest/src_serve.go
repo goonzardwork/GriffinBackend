@@ -32,7 +32,9 @@ func (g GriffinWS) Version() GriffinWS {
 }
 
 func (g GriffinWS) AddEmployee() GriffinWS {
-	g.Conn.POST("/employee")
+	g.Conn.POST("/employee", func(c *gin.Context) {
+		postEmployeePermanent(c, g.Database)
+	})
 	return g
 }
 

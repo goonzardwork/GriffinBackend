@@ -1,6 +1,7 @@
 package rdb
 
 import (
+	"log"
 	"os"
 
 	"github.com/go-redis/redis"
@@ -20,6 +21,9 @@ func Connect() *redis.Client {
 		Password: os.Getenv("RDB_PSWD"),
 		DB:       0,
 	})
-
+	_, err := client.Ping().Result()
+	if err != nil {
+		log.Panicln("database not connected")
+	}
 	return client
 }

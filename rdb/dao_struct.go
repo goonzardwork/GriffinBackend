@@ -13,5 +13,5 @@ type Employee struct {
 	Position string `json:"position"`
 	Account  string `json:"account"`
 	Payroll  int    `json:"payroll"`
-	Date     int    `json:"int"`
+	Date     int    `json:"date"`
 }

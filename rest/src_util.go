@@ -3,6 +3,8 @@ package rest
 import (
 	"GriffinBackend/rdb"
 	"fmt"
+	"reflect"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -37,4 +39,33 @@ func calcTimeLeft(w rdb.Employee) rdb.Employee {
 	w.TimeLeft = timeDiff.Seconds()
 	fmt.Println(w)
 	return w
+}
+
+func structIter[T any](ct T) [][]string {
+	v := reflect.ValueOf(ct)
+	typeOfS := v.Type()
+
+	params := [][]string{}
+	for i := 0; i < v.NumField(); i++ {
+		name := typeOfS.Field(i).Name
+		d := v.Field(i).Interface().(string)
+		params = append(params, []string{strings.ToLower(name), d})
+	}
+	return params
+}
+
+func isRegistered(info []rdb.Login, username, password string) (bool, bool) {
+	usrResult := false
+	pwdResult := false
+	for _, usr := range info {
+		regUser := username == usr.Username
+		regPwd := password == usr.Password
+		if regUser {
+			usrResult = true
+			if regPwd {
+				pwdResult = true
+			}
+		}
+	}
+	return usrResult, pwdResult
 }

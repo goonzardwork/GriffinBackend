@@ -254,3 +254,34 @@ recently added worker | historical payroll activity | login page
   - web_currency.go
     - func postPayment
     - func getPayment
+
+
+<p>
+
+add login method
+</p>
+
+[Add]
+- ./rest
+  - web_employer.go
+    - func loginEmployer - StatusUnauthorized if wrong password | StatusForbidden if wrong id
+  - src_util.go
+    - func structIter - same as one in price / binance_info.go
+    - func isRegistered - true true if all success
+  - src_serve.go
+    - method Login
+  - constants.go
+    - LOGIN_SUCCESS, LOGIN_ERROR constant
+
+- ./rdb
+  - dao_struct.go
+    - struct Login  
+
+[Change]
+- ./rest
+  - web_employer.go
+    - func postEmployer - newIdPw and add section to id and pw
+
+[Fix]
+
+[Remove]

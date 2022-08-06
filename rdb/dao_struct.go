@@ -30,3 +30,8 @@ type Payment struct {
 	Currency string `json:"curr"`
 	Time     string `json:"time"`
 }
+
+type Login struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}

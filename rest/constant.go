@@ -35,7 +35,7 @@ const (
 	FREELANCE_EMPLOYER_PATH = "$"
 	HISTORICAL_PAYMENT_KEY  = "hist_payroll:%v"
 	HISTORICAL_PAYMENT_PATH = "$"
-	LOGIN_KEY               = "login_info:%v"
+	LOGIN_KEY               = "login:0"
 	LOGIN_PATH              = "$"
 	// database message success & error
 	DATABASE_GET_SUCCESS    = "database search successful"
@@ -51,6 +51,9 @@ const (
 	REQUEST_MISSING_PARAM = "missing parameter"
 	// price information
 	PRICE_GET_ERROR = "binance failure"
+	// login information
+	LOGIN_SUCCESS = "login successful"
+	LOGIN_ERROR   = "login fail"
 )
 
 var EmployTypeMap = map[string]string{

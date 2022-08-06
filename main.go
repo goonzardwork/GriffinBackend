@@ -24,7 +24,8 @@ func main() {
 	griffin = griffin.
 		StartService().
 		PingTest().
-		Version()
+		Version().
+		Login()
 
 	// employer operations - preferably admin's job
 	griffin = griffin.

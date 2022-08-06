@@ -86,3 +86,10 @@ func (g GriffinWS) GetPaymentRecord() GriffinWS {
 	})
 	return g
 }
+
+func (g GriffinWS) Login() GriffinWS {
+	g.Conn.GET("/login", func(c *gin.Context) {
+		loginEmployer(c, g.Database)
+	})
+	return g
+}

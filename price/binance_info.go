@@ -2,7 +2,6 @@ package price
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -28,7 +27,6 @@ func BinancePrice(symbol string) (float64, error) {
 	data, err := ioutil.ReadAll(req.Body)
 	err = json.Unmarshal(data, &tradeInfo)
 	price, _ := strconv.ParseFloat(tradeInfo[0].Price, 64)
-	fmt.Println(tradeInfo)
 	return price, nil
 }
 
@@ -43,7 +41,6 @@ func buildRequest[T any](ct T) string {
 	}
 
 	base.RawQuery = params.Encode()
-	fmt.Println(base.String())
 	return base.String()
 }
 

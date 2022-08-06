@@ -140,6 +140,9 @@ cr employer, crud employee and docker
 [Remove]
 
 # 0.0.5
+
+`7cbe591`
+
 <p>
 Fix cors problem
 </p>
@@ -183,9 +186,67 @@ Get price information from binance
     - func GetPrice
   - web.currency.go
     - func getBinanceTrade
+```json
+{
+	"ethusdt": 1718.67,
+	"maticusdt": 0.9317,
+	"usdcusdt": 0.9999
+}
+```
 
 [Change]
 
 [Fix]
 
 [Remove]
+
+<p>
+
+recently added worker | historical payroll activity | login page
+
+</p>
+
+[Add]
+- ./rdb
+  - dao_struct.go
+    - struct Payment - name payroll currency and time
+- ./rest
+  - constant.go
+    - EMPLOYEE_PARTIAL
+    - HISTORICAL_PAYMENT_KEY
+    - HISTORICAL_PAYMENT_PATH
+    - LOGIN_KEY
+    - LOGIN_PATH
+    - DATABASE_GET_SUCCESS
+    - DATABASE_GET_FAIL
+  - src_serve.go
+    - method AddPaymentRecord
+    - method GetPaymentRecord
+  - src_util.go
+    - func processEmployee
+    - func calcTimeLeft
+  - web_param.go
+    - func handleParamEmployerPw
+    - func handleParamEmployeePartial   - partial employ list true or false
+    - func handleParamPostPay  - new payment history
+  
+
+[Change]
+- ./price
+  - binance_info.go
+    - func BinancePrice - delete fmt.Print
+    - func buildRequest[T any] - delete fmt.Print
+- ./rest
+  - constant.go
+    - EMPLOYEE_ID is now key
+    - EMPLOYEE_PARTIAL
+  - web_employee.go 
+    - func getEmployee
+      - if handleParamEmployeePartial is true - give recent employees (2, 2, total of 4)
+      - processEmployee(e) -> calculate seconds left till payment
+  - web_employer.go
+    - func postEmployeer
+      - add password when inserting employer
+  - web_currency.go
+    - func postPayment
+    - func getPayment

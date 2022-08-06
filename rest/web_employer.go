@@ -10,29 +10,49 @@ import (
 )
 
 func postEmployer(c *gin.Context, db *redis.Client) {
+	// queries for new employer
 	newEmployer, err := handleParamEmployerId(c)
 	if err != nil {
 		return
 	}
-	ph := rdb.Employee{
+	newPassword, err := handleParamEmployerPw(c)
+	if err != nil {
+		return
+	}
+
+	phEmp := rdb.Employee{
 		Id:   0,
 		Name: "initial placeholder",
 	}
-	newInit := []rdb.Employee{ph}
+	phPay := rdb.Payment{}
+
+	newInitEmp := []rdb.Employee{phEmp}
+	newInitPay := []rdb.Payment{phPay}
+	// permenent employee data table
 	_ = rdb.JsonSet(
 		db,
 		fmt.Sprintf(PERMANENT_EMPLOYER_KEY, newEmployer),
 		PERMANENT_EMPLOYER_PATH,
-		&newInit,
+		&newInitEmp,
 	)
+	// freelance employee data table
 	_ = rdb.JsonSet(
 		db,
 		fmt.Sprintf(FREELANCE_EMPLOYER_KEY, newEmployer),
 		FREELANCE_EMPLOYER_PATH,
-		&newInit,
+		&newInitEmp,
+	)
+	// employee historical payment data table
+	_ = rdb.JsonSet(
+		db,
+		fmt.Sprintf(HISTORICAL_PAYMENT_KEY, newEmployer),
+		HISTORICAL_PAYMENT_PATH,
+		&newInitPay,
 	)
 	c.JSON(http.StatusOK, gin.H{
-		"message": DATABASE_CREATE_SUCCESS,
+		"message":    DATABASE_CREATE_SUCCESS,
+		"employerId": newEmployer,
+		"employerPw": newPassword,
 	})
 }
 

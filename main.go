@@ -39,7 +39,9 @@ func main() {
 
 	// currency get operations
 	griffin = griffin.
-		GetPrice()
+		GetPrice().
+		AddPaymentRecord().
+		GetPaymentRecord()
 
 	griffinPay := &http.Server{
 		Addr:           ":" + os.Getenv("PORT"),

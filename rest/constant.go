@@ -7,9 +7,11 @@ const (
 	ALLOW_CREDENTIALS       = "Access-Control-Allow-Credentials"
 	ALLOW_CREDENTIALS_VALUE = "true"
 	// function get employer query
-	EMPLOYER_ID     = "employerId"
-	EMPLOYMENT_TYPE = "employType"
-	EMPLOYEE_ID     = "id"
+	EMPLOYER_ID      = "employerId"
+	EMPLOYER_PW      = "employerPw"
+	EMPLOYMENT_TYPE  = "employType"
+	EMPLOYEE_ID      = "key"
+	EMPLOYEE_PARTIAL = "isPartial"
 	// function new employer query
 	EMPLOYEE_NAME     = "name"
 	EMPLOYEE_EMAIL    = "email"
@@ -31,7 +33,13 @@ const (
 	PERMANENT_EMPLOYER_PATH = "$"
 	FREELANCE_EMPLOYER_KEY  = "employee_free:%v"
 	FREELANCE_EMPLOYER_PATH = "$"
+	HISTORICAL_PAYMENT_KEY  = "hist_payroll:%v"
+	HISTORICAL_PAYMENT_PATH = "$"
+	LOGIN_KEY               = "login_info:%v"
+	LOGIN_PATH              = "$"
 	// database message success & error
+	DATABASE_GET_SUCCESS    = "database search successful"
+	DATABASE_GET_FAIL       = "database search failed"
 	DATABASE_APPEND_SUCCESS = "database new data added"
 	DATABASE_APPEND_FAIL    = "fail to append new data"
 	DATABASE_CREATE_SUCCESS = "database new key-value pair added"

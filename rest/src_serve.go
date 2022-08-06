@@ -72,3 +72,17 @@ func (g GriffinWS) GetPrice() GriffinWS {
 	g.Conn.GET("/price", getBinanceTrade)
 	return g
 }
+
+func (g GriffinWS) AddPaymentRecord() GriffinWS {
+	g.Conn.POST("/payment", func(c *gin.Context) {
+		postPayment(c, g.Database)
+	})
+	return g
+}
+
+func (g GriffinWS) GetPaymentRecord() GriffinWS {
+	g.Conn.GET("/payment", func(c *gin.Context) {
+		getPayment(c, g.Database)
+	})
+	return g
+}

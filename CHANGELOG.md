@@ -287,3 +287,26 @@ add login method
 [Fix]
 
 [Remove]
+
+<p>
+Stop working
+</p>
+
+[Add]
+- ./price
+  - constant.go
+    - struct MonthlyPayHistory
+- ./rest
+  - web_currency.go
+    - func getPaymentMonthly
+  - src_util.go
+    - func monthlyPayment
+    - func monthlyPaymentStruct
+  - src_serve.go
+    - func GetPaymentRecordMonth
+
+[Change]
+
+[Fix]
+
+[Remove]

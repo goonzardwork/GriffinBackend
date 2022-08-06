@@ -78,3 +78,28 @@ func getPayment(c *gin.Context, db *redis.Client) {
 		c.JSON(http.StatusOK, record)
 	}
 }
+
+func getPaymentMonthly(c *gin.Context, db *redis.Client) {
+	eid, err := handleParamEmployerId(c)
+	if err != nil {
+		return
+	}
+
+	var pr [][]rdb.Payment
+	err = rdb.JsonGet(
+		db,
+		fmt.Sprintf(HISTORICAL_PAYMENT_KEY, eid),
+		HISTORICAL_PAYMENT_PATH,
+		&pr,
+	)
+	if err != nil {
+		c.JSON(http.StatusForbidden, gin.H{
+			"message": DATABASE_GET_FAIL,
+		})
+	} else {
+		record := pr[0][1:]
+		p := monthlyPayment(record)
+		pS := monthlyPaymentStruct(p)
+		c.JSON(http.StatusOK, pS)
+	}
+}

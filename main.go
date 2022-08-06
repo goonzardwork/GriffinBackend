@@ -42,7 +42,8 @@ func main() {
 	griffin = griffin.
 		GetPrice().
 		AddPaymentRecord().
-		GetPaymentRecord()
+		GetPaymentRecord().
+		GetPaymentRecordMonth()
 
 	griffinPay := &http.Server{
 		Addr:           ":" + os.Getenv("PORT"),

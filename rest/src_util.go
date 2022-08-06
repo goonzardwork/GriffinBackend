@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"GriffinBackend/price"
 	"GriffinBackend/rdb"
 	"fmt"
 	"reflect"
@@ -68,4 +69,46 @@ func isRegistered(info []rdb.Login, username, password string) (bool, bool) {
 		}
 	}
 	return usrResult, pwdResult
+}
+
+func monthlyPayment(p []rdb.Payment) map[string][]int {
+	mapPay := make(map[string][]int)
+
+	for _, payment := range p {
+		ym := payment.Time[0:7]
+		r := make([]int, 3)
+		switch strings.ToLower(payment.Currency) {
+		case "eth":
+			r[0] = payment.Payroll
+		case "matic":
+			r[1] = payment.Payroll
+		case "usdc":
+			r[2] = payment.Payroll
+		}
+
+		v, ok := mapPay[ym]
+		if !ok {
+			mapPay[ym] = r
+		} else {
+			r[0] += v[0]
+			r[1] += v[1]
+			r[2] += v[2]
+			mapPay[ym] = r
+		}
+	}
+	return mapPay
+}
+
+func monthlyPaymentStruct(p map[string][]int) []price.MonthlyPayHistory {
+	var result []price.MonthlyPayHistory
+	for k, v := range p {
+		var mp price.MonthlyPayHistory
+		mp.Date = k
+		mp.Ethereum = v[0]
+		mp.Polygon = v[1]
+		mp.USDC = v[2]
+
+		result = append(result, mp)
+	}
+	return result
 }

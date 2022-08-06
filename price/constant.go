@@ -31,3 +31,10 @@ type PriceInformation struct {
 	Polygon  float64 `json:"maticusdt"`
 	USDC     float64 `json:"usdcusdt"`
 }
+
+type MonthlyPayHistory struct {
+	Date     string `json:"date"`
+	Ethereum int    `json:"eth"`
+	Polygon  int    `json:"matic"`
+	USDC     int    `json:"usdc"`
+}

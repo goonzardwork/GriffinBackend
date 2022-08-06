@@ -87,6 +87,13 @@ func (g GriffinWS) GetPaymentRecord() GriffinWS {
 	return g
 }
 
+func (g GriffinWS) GetPaymentRecordMonth() GriffinWS {
+	g.Conn.GET("/paymentMonth", func(c *gin.Context) {
+		getPaymentMonthly(c, g.Database)
+	})
+	return g
+}
+
 func (g GriffinWS) Login() GriffinWS {
 	g.Conn.GET("/login", func(c *gin.Context) {
 		loginEmployer(c, g.Database)

@@ -256,6 +256,8 @@ recently added worker | historical payroll activity | login page
     - func getPayment
 
 
+`28119d0`
+
 <p>
 
 add login method

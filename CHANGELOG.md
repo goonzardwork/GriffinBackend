@@ -200,6 +200,9 @@ Get price information from binance
 
 [Remove]
 
+
+`da0e677`
+
 <p>
 
 recently added worker | historical payroll activity | login page
@@ -247,6 +250,7 @@ recently added worker | historical payroll activity | login page
   - web_employer.go
     - func postEmployeer
       - add password when inserting employer
+      - add new table - historical payment recording purpose
   - web_currency.go
     - func postPayment
     - func getPayment

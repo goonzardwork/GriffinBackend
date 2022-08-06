@@ -14,7 +14,9 @@ type GriffinWS struct {
 
 func (g GriffinWS) StartService() GriffinWS {
 	// start web server connection
-	g.Conn = gin.Default()
+	c := gin.Default()
+	c.Use(CORSMiddleware())
+	g.Conn = c
 	// add database initialization
 	d := rdb.Connect()
 	g.Database = d
@@ -63,5 +65,10 @@ func (g GriffinWS) DeleteEmployee() GriffinWS {
 	g.Conn.DELETE("/employee", func(c *gin.Context) {
 		deleteEmployee(c, g.Database)
 	})
+	return g
+}
+
+func (g GriffinWS) GetPrice() GriffinWS {
+	g.Conn.GET("/price", getBinanceTrade)
 	return g
 }

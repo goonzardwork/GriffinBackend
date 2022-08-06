@@ -3,6 +3,9 @@ package main
 import (
 	"GriffinBackend/rest"
 	"log"
+	"net/http"
+	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -34,5 +37,16 @@ func main() {
 		AddEmployee().
 		DeleteEmployee()
 
-	griffin.Conn.Run()
+	// currency get operations
+	griffin = griffin.
+		GetPrice()
+
+	griffinPay := &http.Server{
+		Addr:           ":" + os.Getenv("PORT"),
+		Handler:        griffin.Conn,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	griffinPay.ListenAndServe()
 }

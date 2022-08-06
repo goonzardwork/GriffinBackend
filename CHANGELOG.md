@@ -138,3 +138,54 @@ cr employer, crud employee and docker
 [Fix]
 
 [Remove]
+
+# 0.0.5
+<p>
+Fix cors problem
+</p>
+
+[Add]
+- ./rest
+  - constant.go
+    - access control constants - allow origin, credentials
+  - src.utils.go
+    - func CORSMiddleware
+
+[Change]
+- main.go
+  - griffinPay additional settings - Readtimeout, WriteTimeout etc.
+
+[Fix]
+- ./rest
+  - src_serve.go
+    - method StartService - gin connect uses CORS Middleware at web service start
+    
+[Remove]
+
+<p>
+Get price information from binance
+</p>
+
+[Add]
+- ./price
+  - binance_info.go
+    - func BinancePrice - main function
+    - func buildRequest[T any] - insert queries (inside a sturct) into a url 
+    - func structIter - utility function that iterates through a string
+  - constant.go
+    - struct BinanceRequest
+    - struct BinanceResponse
+    - struct PriceInformation
+    - and other constant
+  
+- ./rest 
+  - src_serve.go
+    - func GetPrice
+  - web.currency.go
+    - func getBinanceTrade
+
+[Change]
+
+[Fix]
+
+[Remove]

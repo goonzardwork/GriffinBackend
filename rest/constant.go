@@ -1,6 +1,11 @@
 package rest
 
 const (
+	// access control
+	ALLOW_ORIGIN            = "Access-Control-Allow-Origin"
+	ALLOW_ORIGIN_VALUE      = "*"
+	ALLOW_CREDENTIALS       = "Access-Control-Allow-Credentials"
+	ALLOW_CREDENTIALS_VALUE = "true"
 	// function get employer query
 	EMPLOYER_ID     = "employerId"
 	EMPLOYMENT_TYPE = "employType"
@@ -36,6 +41,8 @@ const (
 	// request messages
 	REQUEST_WRONG_TYPE    = "wrong type parameter"
 	REQUEST_MISSING_PARAM = "missing parameter"
+	// price information
+	PRICE_GET_ERROR = "binance failure"
 )
 
 var EmployTypeMap = map[string]string{

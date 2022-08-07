@@ -14,7 +14,7 @@
 </div>
 
 
-# POST /employer
+# POST /employers
 
 <p>
 
